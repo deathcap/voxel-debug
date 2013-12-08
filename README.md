@@ -18,8 +18,7 @@ You may want to add to your own settings to the dat-gui controls. Install [dat-g
 
 ```js
 var gui = new (require('dat-gui')).GUI()
-var debug = require('voxel-debug')({
-  game: game,
+var debug = require('voxel-debug')(game, {
   gui: gui
 })
 

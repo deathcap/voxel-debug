@@ -1,14 +1,14 @@
-function Debug(opts) {
-  if (opts.THREE) opts = {game: opts}
-  this.game = opts.game
+function Debug(game, opts) {
+  if (opts.THREE) game = opts
+  this.game = game
   this.gui = opts.gui || new (require('dat-gui')).GUI()
   this.liveData = true
   this._datum = []
   this._init()
   this.open()
 }
-module.exports = function(opts) {
-  return new Debug(opts)
+module.exports = function(game, opts) {
+  return new Debug(game, opts)
 }
 module.exports.Debug = Debug
 
