@@ -6,11 +6,21 @@ function Debug(game, opts) {
   this._datum = []
   this._init()
   this.open()
+  this.enable()
 }
 module.exports = function(game, opts) {
   return new Debug(game, opts)
 }
 module.exports.Debug = Debug
+
+Debug.prototype.enable = function() {
+  this.gui.domElement.style.opacity = 1.0;
+}
+
+Debug.prototype.disable = function() {
+  // TODO: actually remove the GUI instead of merely hiding - is it possble?
+  this.gui.domElement.style.opacity = 0.0;
+}
 
 Debug.prototype.axis = function(p, size) {
   p = p || [0, 1, 0]
