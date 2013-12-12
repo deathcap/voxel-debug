@@ -151,4 +151,11 @@ Debug.prototype._render = function() {
     // refresh chunks on change
     self.game.showAllChunks() 
   })
+
+  this.useAtlas = false;
+  folder.add(this, 'useAtlas').onChange(function(value) {
+    self.game.materials.opts.useAtlas = value;
+    self.game.materials = self.game.materials.reconfigure();
+    self.game.showAllChunks() 
+  });
 }
