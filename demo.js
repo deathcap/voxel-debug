@@ -14,8 +14,8 @@ game.appendTo(container)
 game.paused = false
 
 // create a player
-var createPlayer = require('voxel-player')(game)
-var player = createPlayer('textures/shama.png')
+var createPlayer = require('voxel-player')
+var player = createPlayer(game, {image: 'textures/shama.png'})
 player.yaw.position.set(0, 2, 0)
 player.possess()
 
