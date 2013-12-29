@@ -1,4 +1,5 @@
 function Debug(game, opts) {
+  opts = opts || {}
   if (opts.THREE) game = opts
   this.game = game
   this.gui = opts.gui || new (require('dat-gui')).GUI()
