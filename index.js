@@ -160,6 +160,13 @@ Debug.prototype._render = function() {
     self.game.showAllChunks() 
   });
 
+  this.useFourTap = true;
+  folder.add(this, 'useFourTap').onChange(function(value) {
+    self.game.materials.opts.useFourTap = value;
+    self.game.materials = self.game.materials.reconfigure();
+    self.game.showAllChunks() 
+  });
+
   this.texturePack = this.game.materials.texturePath.split('/')[1];
   folder.add(this, 'texturePack').onFinishChange(function(value) {
     self.game.materials.opts.texturePath = 'AssetPacks/' + value + '/textures/blocks/';
