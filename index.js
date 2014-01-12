@@ -153,7 +153,7 @@ Debug.prototype._render = function() {
     self.game.showAllChunks() 
   })
 
-  this.useAtlas = false;
+  this.useAtlas = true;
   folder.add(this, 'useAtlas').onChange(function(value) {
     self.game.materials.opts.useAtlas = value;
     self.game.materials = self.game.materials.reconfigure();
