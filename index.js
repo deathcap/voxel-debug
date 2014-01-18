@@ -167,12 +167,14 @@ Debug.prototype._render = function() {
     self.game.showAllChunks() 
   });
 
-  this.texturePack = this.game.materials.texturePath.split('/')[1];
-  folder.add(this, 'texturePack').onFinishChange(function(value) {
-    self.game.materials.opts.texturePath = 'AssetPacks/' + value + '/textures/blocks/';
-    self.game.materials = self.game.materials.reconfigure();
-    var mine = self.game.plugins && self.game.plugins.get('mine');
-    if (mine) mine.setupTextures();
-    self.game.showAllChunks();
-  });
+  if (this.game.materials.texturePath !== undefined) {
+    this.texturePack = this.game.materials.texturePath.split('/')[1];
+    folder.add(this, 'texturePack').onFinishChange(function(value) {
+      self.game.materials.opts.texturePath = 'AssetPacks/' + value + '/textures/blocks/';
+      self.game.materials = self.game.materials.reconfigure();
+      var mine = self.game.plugins && self.game.plugins.get('mine');
+      if (mine) mine.setupTextures();
+      self.game.showAllChunks();
+    });
+  }
 }
