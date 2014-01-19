@@ -167,6 +167,14 @@ Debug.prototype._render = function() {
     self.game.showAllChunks() 
   });
 
+  this.tilepad = true;
+  folder.add(this, 'tilepad').onChange(function(value) {
+    self.game.materials.opts.tilepad = value;
+    self.game.materials = self.game.materials.reconfigure();
+    self.game.showAllChunks() 
+  });
+
+
   if (this.game.materials.texturePath !== undefined) {
     this.texturePack = this.game.materials.texturePath.split('/')[1];
     folder.add(this, 'texturePack').onFinishChange(function(value) {
