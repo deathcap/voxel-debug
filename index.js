@@ -153,27 +153,40 @@ Debug.prototype._render = function() {
     self.game.showAllChunks() 
   })
 
-  this.useAtlas = self.game.materials.opts.useAtlas;
-  folder.add(this, 'useAtlas').onChange(function(value) {
-    self.game.materials.opts.useAtlas = value;
-    self.game.materials = self.game.materials.reconfigure();
-    self.game.showAllChunks() 
-  });
+  if (this.game.texture_modules && this.game.texture_modules.length > 1) {
+    this.useShader = true;
+    folder.add(this, 'useShader').onChange(function(value) {
+      var i = value ? 0 : 1;
+      var old_names;
 
-  this.useFourTap = self.game.materials.opts.useFourTap;
-  folder.add(this, 'useFourTap').onChange(function(value) {
-    self.game.materials.opts.useFourTap = value;
-    self.game.materials = self.game.materials.reconfigure();
-    self.game.showAllChunks() 
-  });
+      // save old names to restore textures
+      if (self.game.materials.names) {
+        self.old_names = self.game.materials.names;
+      }
 
-  this.tilepad = self.game.materials.opts.tilepad;
-  folder.add(this, 'tilepad').onChange(function(value) {
-    self.game.materials.opts.tilepad = value;
-    self.game.materials = self.game.materials.reconfigure();
-    self.game.showAllChunks() 
-  });
+      self.game.texture_opts.game = self.game; // restore for voxel-texture: delete opts.game;
+      self.game.materials = self.game.texture_modules[i](self.game.texture_opts);
+      self.game.materials.load(self.old_names);
 
+      self.game.showAllChunks() 
+    });
+  }
+
+  if (this.game.materials.opts !== undefined) {
+    this.useFourTap = this.game.materials.opts.useFourTap;
+    folder.add(this, 'useFourTap').onChange(function(value) {
+      self.game.materials.opts.useFourTap = value;
+      self.game.materials = self.game.materials.reconfigure();
+      self.game.showAllChunks() 
+    });
+
+    this.tilepad = this.game.materials.opts.tilepad;
+    folder.add(this, 'tilepad').onChange(function(value) {
+      self.game.materials.opts.tilepad = value;
+      self.game.materials = self.game.materials.reconfigure();
+      self.game.showAllChunks() 
+    });
+  }
 
   if (this.game.materials.texturePath !== undefined) {
     this.texturePack = this.game.materials.texturePath.split('/')[1];
