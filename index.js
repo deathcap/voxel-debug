@@ -153,21 +153,21 @@ Debug.prototype._render = function() {
     self.game.showAllChunks() 
   })
 
-  this.useAtlas = true;
+  this.useAtlas = self.game.materials.opts.useAtlas;
   folder.add(this, 'useAtlas').onChange(function(value) {
     self.game.materials.opts.useAtlas = value;
     self.game.materials = self.game.materials.reconfigure();
     self.game.showAllChunks() 
   });
 
-  this.useFourTap = true;
+  this.useFourTap = self.game.materials.opts.useFourTap;
   folder.add(this, 'useFourTap').onChange(function(value) {
     self.game.materials.opts.useFourTap = value;
     self.game.materials = self.game.materials.reconfigure();
     self.game.showAllChunks() 
   });
 
-  this.tilepad = true;
+  this.tilepad = self.game.materials.opts.tilepad;
   folder.add(this, 'tilepad').onChange(function(value) {
     self.game.materials.opts.tilepad = value;
     self.game.materials = self.game.materials.reconfigure();
