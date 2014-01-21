@@ -12,6 +12,9 @@ function Debug(game, opts) {
 module.exports = function(game, opts) {
   return new Debug(game, opts)
 }
+
+module.exports.pluginInfo = {clientOnly: true}
+
 module.exports.Debug = Debug
 
 Debug.prototype.enable = function() {
