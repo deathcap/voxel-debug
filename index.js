@@ -145,7 +145,7 @@ Debug.prototype._chunks = function() {
 Debug.prototype._render = function() {
   var self = this
   var folder = this.folder.addFolder('render')
-  this.mesherName = 'greedy'
+  this.mesherName = 'transgreedy'
   folder.add(this, 'mesherName', ['greedy', 'transgreedy', 'culled']).onChange(function(value) {
     self.game.mesher = require('voxel').meshers[value]
     self.game.showAllChunks()
