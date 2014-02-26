@@ -176,6 +176,13 @@ Debug.prototype._render = function() {
   }
 
   if (this.game.materials.opts !== undefined) {
+    this.useTransparency = this.game.materials.opts.useTransparency;
+    folder.add(this, 'useTransparency').onChange(function(value) {
+      self.game.materials.opts.useTransparency = value;
+      self.game.materials = self.game.materials.reconfigure();
+      self.game.showAllChunks() 
+    });
+
     this.useFourTap = this.game.materials.opts.useFourTap;
     folder.add(this, 'useFourTap').onChange(function(value) {
       self.game.materials.opts.useFourTap = value;
